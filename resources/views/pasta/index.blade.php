@@ -7,7 +7,7 @@
 
         @dump($pastas)
 
-        <table class="table">
+        <table class="table mb-5">
             <thead>
               <tr>
                 <th scope="col">Nome</th>
@@ -20,7 +20,7 @@
 
                 <tr>
                     <td>{{$pasta->title}}</td>
-                    <td><a href="">Visualizza</a></td>
+                    <td><a href="{{route('pastas.show', $pasta->id)}}">Visualizza</a></td>
                 </tr>
                     
                 @endforeach
@@ -28,6 +28,9 @@
 
             </tbody>
           </table>
+
+
+          <a href="{{route('pastas.create')}}" class="btn btn-primary">Aggiungi una pasta</a>
 
     </div>
 @endsection

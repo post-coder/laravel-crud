@@ -26,7 +26,7 @@ class PastaController extends Controller
      */
     public function create()
     {
-        // salvare dei dati nella tabella
+        return view('pasta.create');
     }
 
     /**
@@ -34,7 +34,25 @@ class PastaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // creiamo una nuova pasta
+
+        // dd($request);
+
+        $newPasta = new Pasta();
+
+        $newPasta->title = $request->title;
+        $newPasta->description = $request->description;
+        $newPasta->type = $request->type;
+        $newPasta->src = $request->src;
+        $newPasta->cooking_time = $request['cooking-time'];
+        $newPasta->weight = $request->weight;
+
+        $newPasta->save();
+
+        // spostiamo l'utente nella index
+        return redirect()->route('pastas.index');
+
     }
 
     /**
@@ -42,6 +60,8 @@ class PastaController extends Controller
      */
     public function show(Pasta $pasta)
     {
+        // se scriviamo tra le parentesi del metodo show() direttamente che vogliamo ricevere un oggetto di tipo Pasta, 
+        // Laravel va a prenderla dal database in automatico per noi
         return view('pasta.show', compact('pasta'));
     }
 
