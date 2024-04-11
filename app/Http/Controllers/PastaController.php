@@ -40,14 +40,8 @@ class PastaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Pasta $pasta)
     {
-        // per ottenere direttamente un oggetto di tipo Pasta, utilizziamo alla fine della query il metodo ->first()
-        // $pasta = Pasta::where('id', $id)->first();
-        
-        // oppure possiamo utilizzare direttamente il metodo find()
-        $pasta = Pasta::find($id);
-
         return view('pasta.show', compact('pasta'));
     }
 
