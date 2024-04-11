@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PastaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
+// se abbiamo creato un controller come RESOURCE
+// in automatico le sue funzioni sono STANDARDIZZATE
+// ciò significa che possiamo richiamare delle rotte anch'esse standardizzate, risparmiandoci tempo e eventuali errori per stilarle una ad una
+Route::resource('pastas', PastaController::class);
