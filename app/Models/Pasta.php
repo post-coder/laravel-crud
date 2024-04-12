@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pasta extends Model
 {
     use HasFactory;
+
+    
 }

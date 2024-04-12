@@ -18,7 +18,7 @@ class PastaController extends Controller
 
         // dd($pastas);
 
-        return view('pasta.index', compact('pastas'));
+        return view('pastas.index', compact('pastas'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PastaController extends Controller
      */
     public function create()
     {
-        return view('pasta.create');
+        return view('pastas.create');
     }
 
     /**
@@ -62,23 +62,37 @@ class PastaController extends Controller
     {
         // se scriviamo tra le parentesi del metodo show() direttamente che vogliamo ricevere un oggetto di tipo Pasta, 
         // Laravel va a prenderla dal database in automatico per noi
-        return view('pasta.show', compact('pasta'));
+        return view('pastas.show', compact('pasta'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Pasta $pasta)
     {
-        //
+
+        return view('pastas.edit', compact('pasta'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Pasta $pasta)
     {
-        //
+        // codice per modificare il record 
+        // dd($request, $pasta);
+
+        $pasta->title = $request->title;
+        $pasta->description = $request->description;
+        $pasta->type = $request->type;
+        $pasta->src = $request->src;
+        $pasta->cooking_time = $request['cooking-time'];
+        $pasta->weight = $request->weight;
+
+        $pasta->save();
+
+        return redirect()->route('pastas.show', $pasta->id);
     }
 
     /**
