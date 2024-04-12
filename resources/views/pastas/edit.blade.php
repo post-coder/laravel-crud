@@ -9,7 +9,6 @@
 
     <form action="{{route('pastas.update', $pasta->id)}}" method="POST">
         @csrf
-
         @method('PUT')
 
         <div class="mb-3">

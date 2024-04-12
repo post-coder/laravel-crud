@@ -80,9 +80,9 @@ class PastaController extends Controller
      */
     public function update(Request $request, Pasta $pasta)
     {
-        // codice per modificare il record 
         // dd($request, $pasta);
-
+        
+        // codice per modificare il record 
         $pasta->title = $request->title;
         $pasta->description = $request->description;
         $pasta->type = $request->type;
@@ -98,8 +98,12 @@ class PastaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Pasta $pasta)
     {
-        //
+
+        $pasta->delete();
+
+        return redirect()->route('pastas.index');
+        
     }
 }
