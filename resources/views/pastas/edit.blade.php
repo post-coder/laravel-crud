@@ -13,7 +13,7 @@
 
         <div class="mb-3">
           <label for="title" class="form-label">Nome</label>
-          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{$pasta->title}}" required>
+          <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') ?? $pasta->title}}">
           @error('title')
           <div class="invalid-feedback">
               {{$message}}
@@ -23,7 +23,7 @@
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4">{{$pasta->description}}</textarea>
+            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4">{{old('description') ?? $pasta->description}}</textarea>
             @error('description')
             <div class="invalid-feedback">
                 {{$message}}
@@ -33,7 +33,7 @@
 
         <div class="mb-3">
             <label for="type" class="form-label">Tipologia</label>
-            <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type" value="{{$pasta->type}}">
+            <input type="text" class="form-control @error('type') is-invalid @enderror" id="type" name="type" value="{{old('type') ?? $pasta->type}}">
              @error('type')
             <div class="invalid-feedback">
                 {{$message}}
@@ -43,7 +43,7 @@
 
         <div class="mb-3">
             <label for="src" class="form-label">Src immagine</label>
-            <input type="text" class="form-control @error('src') is-invalid @enderror" id="src" name="src" value="{{$pasta->src}}">
+            <input type="text" class="form-control @error('src') is-invalid @enderror" id="src" name="src" value="{{old('src') ?? $pasta->src}}">
             @error('src')
             <div class="invalid-feedback">
                 {{$message}}
@@ -53,7 +53,7 @@
 
         <div class="mb-3">
             <label for="cooking-time" class="form-label">Tempo di cottura</label>
-            <input type="text" class="form-control @error('cooking-time') is-invalid @enderror" id="cooking-time" name="cooking-time" value="{{$pasta->cooking_time}}">
+            <input type="text" class="form-control @error('cooking-time') is-invalid @enderror" id="cooking-time" name="cooking-time" value="{{old('cooking-time') ?? $pasta->cooking_time}}">
             @error('cooking-time')
             <div class="invalid-feedback">
                 {{$message}}
@@ -63,7 +63,7 @@
 
         <div class="mb-3">
             <label for="weight" class="form-label">Peso</label>
-            <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" value="{{$pasta->weight}}">
+            <input type="text" class="form-control @error('weight') is-invalid @enderror" id="weight" name="weight" value="{{old('weight') ?? $pasta->weight}}">
             @error('weight')
             <div class="invalid-feedback">
                 {{$message}}
