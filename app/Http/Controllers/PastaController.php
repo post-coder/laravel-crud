@@ -37,6 +37,23 @@ class PastaController extends Controller
         
         // creiamo una nuova pasta
 
+        
+        
+        // codice per validare la nostra richiesta
+        // fare i controlli opportuni per far sì che i dati siano validi prima di essere inseriti nel db
+        
+        // tramite il metodo validate() controlliamo delle regole scelte da noi per i vari campi che riceviamo dal form
+        // in caso le validazioni non vadano a buon fine (ne basta una sbagliata), laravel in automatico farà tornare l'utente indietro
+        // e fornirà alla pagina precedente le indicazioni sull'errore
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'nullable|max:1000',
+            'type' => 'required|max:80',
+            'src' => 'nullable|max:255',
+            'cooking_time' => 'required|max:10',
+            'weight' => 'required|max:10'
+        ]);
+        
         // dd($request);
 
         $newPasta = new Pasta();

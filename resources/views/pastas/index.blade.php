@@ -20,7 +20,7 @@
 
                 <tr>
                     <td>{{$pasta->title}}</td>
-                    <td><a href="{{route('pastas.show', $pasta->id)}}">Visualizza</a></td>
+                    <td><a class="btn btn-info" href="{{route('pastas.show', $pasta->id)}}">Visualizza</a></td>
                 </tr>
                     
                 @endforeach

@@ -9,38 +9,47 @@
     {{-- nel form scriviamo il nome della rotta come action --}}
     {{-- indichiamo anche il metodo POST per la richiesta --}}
     <form action="{{route('pastas.store')}}" method="POST">
-
         @csrf
 
         <div class="mb-3">
           <label for="title" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="title" name="title" required>
+          <input type="text" class="form-control" id="title" name="title" value="{{old('title')}}">
         </div>
 
         <div class="mb-3">
             <label for="description" class="form-label">Descrizione</label>
-            <textarea type="text" class="form-control" id="description" name="description"></textarea>
+            <textarea type="text" class="form-control" id="description" name="description">{{ old('description') }}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="type" class="form-label">Tipologia</label>
-            <input type="text" class="form-control" id="type" name="type">
+            <input type="text" class="form-control" id="type" name="type" value="{{old('type')}}">
         </div>
 
         <div class="mb-3">
             <label for="src" class="form-label">Src immagine</label>
-            <input type="text" class="form-control" id="src" name="src">
+            <input type="text" class="form-control" id="src" name="src" value="{{old('src')}}">
         </div>
 
         <div class="mb-3">
             <label for="cooking-time" class="form-label">Tempo di cottura</label>
-            <input type="text" class="form-control" id="cooking-time" name="cooking-time">
+            <input type="text" class="form-control" id="cooking-time" name="cooking-time" value="{{old('cooking-time')}}">
         </div>
 
         <div class="mb-3">
             <label for="weight" class="form-label">Peso</label>
-            <input type="text" class="form-control" id="weight" name="weight">
+            <input type="text" class="form-control" id="weight" name="weight" value="{{old('weight')}}">
         </div>
+
+        @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <button type="submit" class="btn btn-primary">Salva</button>
 
