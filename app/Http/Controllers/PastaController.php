@@ -144,6 +144,7 @@ class PastaController extends Controller
 
             // 'max' => "Il campo :attribute deve avere massimo :max caratteri", // possiamo creare messaggi generali per regole condivise tra più campi
             // 'required' => "Il campo :attribute deve avere inserito", // possiamo creare messaggi generali per regole condivise tra più campi
+            
         ])->validate();
         // tramite il metodo validate() controlliamo delle regole scelte da noi per i vari campi che riceviamo dal form
         // in caso le validazioni non vadano a buon fine (ne basta una sbagliata), laravel in automatico farà tornare l'utente indietro
