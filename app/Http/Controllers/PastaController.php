@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePastaRequest;
 use App\Models\Pasta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -33,12 +34,15 @@ class PastaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePastaRequest $request)
     {
         
         // creiamo una nuova pasta
 
-        $this->validation($request->all());
+        // $this->validation($request->all());
+
+        $request->validated();
+
         
         // codice per validare la nostra richiesta
         // fare i controlli opportuni per far sì che i dati siano validi prima di essere inseriti nel db
@@ -49,12 +53,15 @@ class PastaController extends Controller
 
         $newPasta = new Pasta();
 
-        $newPasta->title = $request->title;
-        $newPasta->description = $request->description;
-        $newPasta->type = $request->type;
-        $newPasta->src = $request->src;
-        $newPasta->cooking_time = $request['cooking-time'];
-        $newPasta->weight = $request->weight;
+        // $newPasta->title = $request->title;
+        // $newPasta->description = $request->description;
+        // $newPasta->type = $request->type;
+        // $newPasta->src = $request->src;
+        // $newPasta->cooking_time = $request['cooking-time'];
+        // $newPasta->weight = $request->weight;
+
+        // dopo aver inserito i fillable nel model possiamo utilizzare questo
+        $newPasta->fill($request->all());
 
         $newPasta->save();
 
@@ -86,19 +93,22 @@ class PastaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pasta $pasta)
+    public function update(StorePastaRequest $request, Pasta $pasta)
     {
         // dd($request, $pasta);
-        $this->validation($request->all());
+        // $this->validation($request->all());
+
+        $request->validated();
 
         
         // codice per modificare il record 
-        $pasta->title = $request->title;
-        $pasta->description = $request->description;
-        $pasta->type = $request->type;
-        $pasta->src = $request->src;
-        $pasta->cooking_time = $request['cooking-time'];
-        $pasta->weight = $request->weight;
+        // $pasta->title = $request->title;
+        // $pasta->description = $request->description;
+        // $pasta->type = $request->type;
+        // $pasta->src = $request->src;
+        // $pasta->cooking_time = $request['cooking-time'];
+        // $pasta->weight = $request->weight;
+        $pasta->update($request->all());
 
         $pasta->save();
 
@@ -119,37 +129,5 @@ class PastaController extends Controller
 
 
 
-    // creiamo una funzione privata per i controlli di validazione e la comunicazione dei messaggi di errore
-    // che poi richiameremo per il metodo store e il metodo update
-    private function validation($data) {
-
-        // quando facciamo l'import di questa classe dobbiamo fare attenzione ad importare quello presente in Support\Facades.
-        $validator = Validator::make($data, [
-            'title' => 'required|max:100',
-            'description' => 'nullable|max:5000',
-            'type' => 'required|max:80',
-            'src' => 'nullable|max:1000',
-            'cooking-time' => 'required|max:10',
-            'weight' => 'required|max:10'
-        ], [
-            'title.required' => 'Il titolo deve essere inserito',
-            'title.max' => "Il titolo deve avere massimo :max caratteri",
-            'type.max' => "La tipologia deve avere massimo :max caratteri",
-            'type.required' => 'La tipologia deve essere inserita',
-            'src.max' => "Inserisci un indirizzo di massimo :max caratteri",
-            'cooking-time.required' => "Il tempo di cottura deve essere inserito",
-            'cooking-time.max' => "Inserisci un tempo di cottura di massimo :max caratteri",
-            'weight.required' => "Il peso deve essere inserito",
-            'weight.max' => "Inserisci un peso di massimo :max caratteri",
-
-            // 'max' => "Il campo :attribute deve avere massimo :max caratteri", // possiamo creare messaggi generali per regole condivise tra più campi
-            // 'required' => "Il campo :attribute deve avere inserito", // possiamo creare messaggi generali per regole condivise tra più campi
-            
-        ])->validate();
-        // tramite il metodo validate() controlliamo delle regole scelte da noi per i vari campi che riceviamo dal form
-        // in caso le validazioni non vadano a buon fine (ne basta una sbagliata), laravel in automatico farà tornare l'utente indietro
-        // e fornirà alla pagina precedente le indicazioni sull'errore
-        
-
-    }
 }
+ 

@@ -53,9 +53,9 @@
         </div>
         
         <div class="mb-3">
-            <label for="cooking-time" class="form-label">Tempo di cottura</label>
-            <input type="text" class="form-control @error('cooking-time') is-invalid @enderror" id="cooking-time" name="cooking-time" value="{{old('cooking-time')}}">
-            @error('cooking-time')
+            <label for="cooking_time" class="form-label">Tempo di cottura</label>
+            <input type="text" class="form-control @error('cooking_time') is-invalid @enderror" id="cooking_time" name="cooking_time" value="{{old('cooking_time')}}">
+            @error('cooking_time')
             <div class="invalid-feedback">
                 {{$message}}
             </div>

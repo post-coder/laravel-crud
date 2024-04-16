@@ -12,4 +12,7 @@ class Pasta extends Model
 
     // Laravel ci fornisce degli strumenti e delle proprietà che ci permettono di gestire la soft delete, dobbiamo solo farle ereditare dal nostro model
     use SoftDeletes;
+
+    // possiamo specificare quali sono i campi del model che permettiamo vengano riempiti in automatico dai form
+    protected $fillable = [ 'title', 'description', 'type', 'src', 'cooking_time', 'weight'];
 }
