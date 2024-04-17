@@ -3,9 +3,8 @@
 @section('content')
     <div class="container py-5">
 
-        <h1>Lista dei tipi di pasta</h1>
+        <h1 class="mb-5">Lista dei tipi di pasta</h1>
 
-        @dump($pastas)
 
         <table class="table mb-5">
             <thead>
